@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Us | Learning Tool</title>
+  <!-- Bootstap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icon CDN Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Font Links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="learning_page.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/website_logo.png" type="image/x-icon">
+  <!-- Font links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=Squada+One&display=swap"
+    rel="stylesheet">
+  <!-- Animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="img/website_logo.png" alt="Work With Us">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-custom" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-custom" href="awareness_hub.html">Awareness Hub</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-custom dropdown-toggle active" href="#" id="featuresDropdown" role="button"
+              data-bs-toggle="dropdown">
+              Our Features
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="learning_page.html"><i class="fas fa-graduation-cap me-2"></i>
+                  Learning
+                  Tool</a></li>
+              <li><a class="dropdown-item" href="community_corner.html"><i class="fas fa-users me-2"></i> Community
+                  Corner</a></li>
+              <li><a class="dropdown-item" href="blog_and_resource.html"><i class="fas fa-newspaper me-2"></i> Blog &
+                  Resources</a></li>
+              <li><a class="dropdown-item" href="park_show_case.html"><i class="fas fa-seedling me-2"></i> Park
+                  Showcase</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-custom" href="about_us.html">About Us</a>
+          </li>
+        </ul>
+        <div class="d-flex nav-auth align-items-center" id="authSection">
+          <!-- Report link will be updated dynamically -->
+          <a href="#" class="report-link" id="reportLink" onclick="checkAuthForReport()">
+            <i class="fas fa-flag me-1"></i> Report
+          </a>
+          <div id="userProfile" style="display: none;">
+            <div class="user-profile">
+              <div class="user-avatar" id="userAvatar">U</div>
+              <span class="user-name" id="userName">User</span>
+              <button class="logout-btn" onclick="logout()" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
+            </div>
+          </div>
+          <a href="#" class="btn btn-join" data-bs-toggle="modal" data-bs-target="#joinModal" id="joinBtn">
+            <i class="fas fa-user-plus me-1"></i> Join
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Join Modal (Same as index.html) -->
+  <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="joinModalLabel">Join WorkWithUs</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="joinTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link nav-custom2 active" id="signin-tab" data-bs-toggle="tab" data-bs-target="#signin"
+                type="button" role="tab">Sign In</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link nav-custom2" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup"
+                type="button" role="tab">Sign Up</button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="joinTabsContent">
+            <!-- Sign In Tab -->
+            <div class="tab-pane fade show active" id="signin" role="tabpanel">
+              <form id="signinForm">
+                <div class="mb-3">
+                  <label for="signinEmail" class="form-label">Email Address or Username</label>
+                  <input type="text" class="form-control" id="signinEmail" placeholder="Enter email or username"
+                    required>
+                </div>
+                <div class="mb-3">
+                  <label for="signinPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signinPassword" placeholder="Enter your password"
+                    required>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Remember me</label>
+                  <a href="#pw_modal" class="float-end text-decoration-none" data-bs-toggle="modal">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-modal">Sign In</button>
+                <div class="text-center mt-3">
+                  <p class="text-muted small">Or sign in with:</p>
+                  <button type="button" class="btn btn-outline-secondary btn-sm me-2 sign-up-login-btn">
+                    <a href="https://www.google.com/" class="sign-up-login"><i class="fab fa-google"></i> Google</a>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm sign-up-login-btn">
+                    <a href="https://www.facebook.com" class="sign-up-login"><i class="fab fa-facebook"></i>
+                      Facebook</a>
+                  </button>
+                </div>
+              </form>
+              <div class="form-footer">
+                <p>Don't have an account? <a href="#" onclick="switchToSignUp()">Sign Up</a></p>
+              </div>
+            </div>
+
+            <!-- Sign Up Tab -->
+            <div class="tab-pane fade" id="signup" role="tabpanel">
+              <form id="signupForm">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="signupFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="signupFirstName" placeholder="First name" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="signupLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="signupLastName" placeholder="Last name" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="signupUsername" class="form-label">Username *</label>
+                  <div class="input-group">
+                    <span class="input-group-text">@</span>
+                    <input type="text" class="form-control" id="signupUsername" placeholder="Choose a username"
+                      required>
+                  </div>
+                  <div class="form-text">This will be your display name on ParkRevival</div>
+                </div>
+                <div class="mb-3">
+                  <label for="signupEmail" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signupPassword" placeholder="Create a password"
+                    required>
+                  <div class="form-text">Minimum 8 characters with letters and numbers</div>
+                </div>
+                <div class="mb-3">
+                  <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control" id="signupConfirmPassword"
+                    placeholder="Confirm your password" required>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                  <label class="form-check-label" for="termsAgreement">
+                    I agree to the <a href="terms_of_service.html" class="text-decoration-none">Terms of Service</a> and <a href="privacy_policy.html"
+                      class="text-decoration-none">Privacy Policy</a>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-modal">Create Account</button>
+                <div class="text-center mt-3">
+                  <p class="text-muted small">Or sign up with:</p>
+                  <button type="button" class="btn btn-outline-secondary btn-sm me-2 sign-up-login-btn">
+                    <a href="https://www.google.com/" class="sign-up-login"><i class="fab fa-google"></i> Google</a>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm sign-up-login-btn">
+                    <a href="https://www.facebook.com" class="sign-up-login"><i class="fab fa-facebook"></i>
+                      Facebook</a>
+                  </button>
+                </div>
+              </form>
+              <div class="form-footer">
+                <p>Already have an account? <a href="#" onclick="switchToSignIn()">Sign In</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- forget password -->
+  <div class="modal fade" id="pw_modal" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content p-0 bg-for-pw position-relative">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+
+        <div class="inner-card p-4 text-center mx-auto my-5">
+          <h4 class="fw-title mb-2">Forgot Password</h4>
+          <form id="forgotPasswordForm">
+            <p class="form-text mb-3">Enter your email address</p>
+            <input type="email" class="form-control mb-3" id="forgotPasswordEmail" placeholder="Enter email address"
+              required>
+            <button class="btn btn-submit w-100 btn-modal" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Report Restriction Modal (Same as index.html) -->
+  <div class="modal fade" id="reportRestrictionModal" tabindex="-1" aria-labelledby="reportRestrictionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body report-restriction-modal">
+          <div class="report-restriction-icon">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <h3 class="report-restriction-title">You Must Sign Up to Report</h3>
+          <p class="report-restriction-message">
+            To ensure the quality and accountability of reports, we require users to have an account before submitting
+            park issues. This helps us follow up on reports and keep our community safe.
+          </p>
+
+          <div class="auth-options">
+            <button type="button" class="btn-auth-option btn-signin" onclick="openSignInFromReport()">
+              <i class="fas fa-sign-in-alt me-2"></i> Sign In
+            </button>
+            <button type="button" class="btn-auth-option btn-signup" onclick="openSignUpFromReport()">
+              <i class="fas fa-user-plus me-2"></i> Sign Up
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <p class="text-muted small">
+              Already have an account? Sign in to access the reporting feature.
+              New to ParkRevival? Sign up for free in just a few minutes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="learning-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="hero-content">
+            <h1 class="hero-title animate__animated animate__fadeInDown">Learning Tool</h1>
+            <p class="hero-subtitle animate__animated animate__fadeInUp" style="font-family: 'Solway';">Expand your
+              knowledge about parks,
+              sustainability, and community engagement through interactive learning experiences.</p>
+            <a href="#lets-learn" class="btn btn-join mt-3" style="padding: 12px 30px; font-size: 1.1rem;">
+              <i class="fas fa-graduation-cap me-2"></i> Start Learning
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="features-section pt-3">
+    <h2 class="feature-heading text-center">What is the Learning Tool?</h2>
+    <div class="features-container row justify-content-center gap-5">
+
+      <div class="feature-card col-md-3">
+        <div class="icon-circle">
+          <span class="text-center" aria-hidden="true"><i class="bi bi-book fs-3"></i></span>
+
+
+        </div>
+        <div class="card-content">
+          <h2>Park Safety Essentials</h2>
+          <p>Learn the core ideas behind safe and welcoming parks, from lighting and visibility to regular maintenance
+            and care.</p>
+        </div>
+      </div>
+
+
+      <div class="feature-card col-md-3">
+        <div class="icon-circle">
+          <span class="text-center" aria-hidden="true"><i class="bi bi-exclamation-triangle fs-3"></i></span>
+        </div>
+        <div class="card-content">
+          <h2>Explore More Information</h2>
+          <p>Access additional guides and resources that help you understand park safety and revitalization in more
+            detail.</p>
+        </div>
+      </div>
+
+
+      <div class="feature-card col-md-3">
+        <div class="icon-circle">
+          <span class="text-center" aria-hidden="true"><i class="bi bi-people fs-3"></i></span>
+        </div>
+        <div class="card-content">
+          <h2>Test What You’ve Learned</h2>
+          <p>Put your understanding to the test with a fun and interactive quiz and reinforce what you’ve just explored!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <img src="img/final linebreak 1.png" alt="divider" class="divider-break"
+    style="height: 190px; width: 620px; display: block; margin: auto;">
+  <!-- Awareness Topics -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-title">Key Awareness Topics</h2>
+          <p style="font-family: 'Solway'; font-size: 1.2rem;">Understanding what makes parks safer and more welcoming
+            for everyone</p>
+        </div>
+      </div>
+
+      <div class="awareness-topics">
+        <div class="topic-card animate-left">
+          <div class="topic-icon">
+            <i class="bi bi-lightbulb-fill" style="color: #2bad82;"></i>
+          </div>
+          <h4 class="mb-3">Visibility & Lighting</h4>
+          <p>Well-lit parks reduce blind spots and discourage unsafe behavior. Clear visibility helps youth and families
+            feel safer using parks during early mornings and evenings.</p>
+        </div>
+
+        <div class="topic-card animate-on-scroll">
+          <div class="topic-icon">
+            <i class="fas fa-handshake" style="color: #2bad82;"></i>
+          </div>
+          <h4 class="mb-3">Active Community Presence</h4>
+          <p>Parks with regular visitors, volunteers, and activities tend to feel safer. A visible community presence
+            naturally discourages misuse and increases mutual care for the space.</p>
+        </div>
+
+        <div class="topic-card animate-on-scroll">
+          <div class="topic-icon">
+            <i class="fas fa-home" style="color: #2bad82;"></i>
+          </div>
+          <h4 class="mb-3">Maintenance & Infrastructure</h4>
+          <p>Broken benches, damaged paths, and neglected facilities can create safety risks. Timely maintenance signals
+            that a park is cared for and monitored.</p>
+        </div>
+
+        <div class="topic-card animate-right">
+          <div class="topic-icon">
+            <i class="bi bi-bullseye" style="color: #2bad82;"></i>
+          </div>
+          <h4 class="mb-3">Clear Reporting & Response</h4>
+          <p>When park users know how and where to report issues, problems are less likely to be ignored. Simple
+            reporting systems help concerns reach the right people faster.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="cta-section">
+            <div class="row align-items-center g-5">
+
+              <!-- LEFT CONTENT -->
+              <div class="col-lg-6 text-center text-lg-start cta-left">
+                <h2 class="mb-4">Spread the Awareness</h2>
+                <p class="mb-4">
+                  Learn how to recognize common safety risks in parks—such as poor lighting, damaged equipment, and
+                  unsafe layouts—through our awareness kit designed for youth and residents.
+                </p>
+                <a href="https://edusn-my.sharepoint.com/:w:/g/personal/thethmuemaythu_edusnschool_co_uk/IQDlFDiO4qBiS619VqyJewhBAW6U2CcOwFdybuUkVcINou4?e=sQRvG3"
+                  class="btn btn-cta">
+                  Download Awareness Kit <i class="bi bi-download ms-2"></i>
+                </a>
+              </div>
+
+              <!-- RIGHT CONTENT (NO GRID) -->
+              <div class="col-lg-6">
+                <div class="kit-info">
+                  <h4>What You’ll Get</h4>
+
+                  <div class="kit-point">
+                    <div class="kit-icon"><i class="bi bi-lightbulb" style="font-size: 28px;"></i></div>
+                    <p>Clear explanations of common park safety issues and why they matter.</p>
+                  </div>
+
+                  <div class="kit-point">
+                    <div class="kit-icon"><i class="bi bi-exclamation-triangle" style="font-size: 28px;"></i></div>
+                    <p>Real-life examples of unsafe park features to help you recognize risks faster.</p>
+                  </div>
+
+                  <div class="kit-point">
+                    <div class="kit-icon"><i class="bi bi-people" style="font-size: 28px;"></i></div>
+                    <p>Simple actions students and communities can take to improve park safety.</p>
+                  </div>
+
+                  <div class="kit-point">
+                    <div class="kit-icon"><i class="bi bi-shield-check" style="font-size: 28px;"></i></div>
+                    <p>Guidance on how awareness leads to safer, more welcoming public spaces.</p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz Section -->
+  <section class="quiz-section mt-5">
+    <div class="container">
+
+      <div class="quiz-container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="mb-4 animate__animated animate__fadeIn">Take a Free Quiz Now!</h2>
+            <p style="font-family: 'Solway'; font-size: 1.2rem;">Test your knowledge on how much you know about
+              <strong>park
+                management</strong> and <strong>sustainability.</strong>
+            </p>
+          </div>
+        </div>
+        <br>
+        <a href="quiz.html" onclick="createQuiz()" class="btn-create-quiz btn-cta" id="quiz"
+          style="text-decoration: none; font-family: 'Solway';">Test your knowledge now!</a>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h2 class="footer-logo-title"><img src="img/logo-v2.png" alt="logo" class="footer-logo"> Work With Us</h2>
+          <p class="footer-description">Transforming community parks through community engagement, sharing awareness,
+            and volunteer action. Join us in creating greener, healthier spaces for everyone!</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61584121263469" class="social-icon"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://t.me/wearedoremi" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.youtube.com/channel/UCJ5Jz1-wgFoY7082MpRcwKg" class="social-icon"><i
+                class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <h2 class="footer-heading">Quick Links</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="awareness_hub.html">Awareness Hub</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="report_page.html">Report</a></li>
+            <li><a href="reference.html">Reference</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <h2 class="footer-heading">Our Features</h2>
+          <ul class="footer-links">
+            <li><a href="learning_page.html">Learning Tool</a></li>
+            <li><a href="community_corner.html">Community Corner</a></li>
+            <li><a href="blog_and_resource.html">Blog & Resources</a></li>
+            <li><a href="park_show_case.html">Park Showcase</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12">
+          <h2 class="footer-heading">Contact Info</h2>
+          <ul class="footer-links">
+            <li><i class="fas fa-phone me-2"></i> (+95) 12345 6789</li>
+            <li><i class="fas fa-envelope me-2"></i> info@workwithus.org</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 9AM-5PM</li>
+            <li><i class="bi bi-geo-alt-fill me-2"></i> No. 635 J, Yoe Ma Yeik Thar (Pyae Road) 2nd Ward, Kamayut
+              Township, Yangon</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-bottom">
+            <p>&copy;2025 Work With Us. All rights reserved. | <a href="privacy_policy.html" class="bottom">Privacy Policy</a> | <a
+                href="terms_of_service.html" class="bottom">Terms of Service</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      updateProfile
+    } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzQIP_UpuK8WhtQNtpoRNfW_kSI-FDY2Q",
+      authDomain: "park-revival.firebaseapp.com",
+      databaseURL: "https://park-revival-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "park-revival",
+      storageBucket: "park-revival.firebasestorage.app",
+      messagingSenderId: "723557322600",
+      appId: "1:723557322600:web:f59d2b23edcf25a9bf50dd"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Export auth for use in other functions
+    window.auth = auth;
+    window.db = db;
+
+    // User data cache
+    let userDataCache = {};
+
+    // Check authentication state
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        updateUIForLoggedInUser(user);
+        console.log("User is signed in:", user.email);
+      } else {
+        // User is signed out
+        updateUIForLoggedOutUser();
+        console.log("User is signed out");
+      }
+    });
+
+    // Update UI for logged in user
+    function updateUIForLoggedInUser(user) {
+      const userProfile = document.getElementById('userProfile');
+      const joinBtn = document.getElementById('joinBtn');
+      const reportLink = document.getElementById('reportLink');
+
+      // Show user profile and hide join button
+      userProfile.style.display = 'block';
+      joinBtn.style.display = 'none';
+
+      // Update user info
+      const userName = document.getElementById('userName');
+      const userAvatar = document.getElementById('userAvatar');
+
+      // Get user's first name or email prefix
+      const displayName = user.displayName || user.email.split('@')[0];
+      userName.textContent = displayName;
+      userAvatar.textContent = displayName.charAt(0).toUpperCase();
+
+      // Change report link to go directly to report page
+      reportLink.removeAttribute('onclick');
+      reportLink.setAttribute('href', 'report_page.html');
+      reportLink.innerHTML = '<i class="fas fa-flag me-1"></i> Report';
+
+      // Close any open modal
+      const joinModal = bootstrap.Modal.getInstance(document.getElementById('joinModal'));
+      if (joinModal) {
+        joinModal.hide();
+      }
+
+      const reportRestrictionModal = bootstrap.Modal.getInstance(document.getElementById('reportRestrictionModal'));
+      if (reportRestrictionModal) {
+        reportRestrictionModal.hide();
+      }
+    }
+
+    // Function to get user data from Firestore
+    async function getUserData(userId) {
+      try {
+        const userDocRef = doc(db, "users", userId);
+        // We'll handle this in a separate function
+        return null;
+      } catch (error) {
+        console.error("Error getting user data:", error);
+        return null;
+      }
+    }
+
+    // Update UI for logged out user
+    function updateUIForLoggedOutUser() {
+      const userProfile = document.getElementById('userProfile');
+      const joinBtn = document.getElementById('joinBtn');
+      const reportLink = document.getElementById('reportLink');
+
+      // Hide user profile and show join button
+      userProfile.style.display = 'none';
+      joinBtn.style.display = 'inline-block';
+
+      // Reset report link to check authentication
+      reportLink.setAttribute('href', '#');
+      reportLink.setAttribute('onclick', 'checkAuthForReport()');
+      reportLink.innerHTML = '<i class="fas fa-flag me-1"></i> Report';
+    }
+
+    // Sign up function
+    window.signUp = async (email, password, firstName, lastName, username) => {
+      try {
+        // First check if username is available
+        // (You would need to implement username checking in Firestore)
+
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        console.log("User signed up:", user);
+
+        // Update user profile with display name
+        await updateProfile(user, {
+          displayName: username
+        });
+
+        // Save additional user data to Firestore
+        try {
+          const userData = {
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            email: email,
+            createdAt: new Date().toISOString()
+          };
+
+          await setDoc(doc(db, "users", user.uid), userData);
+          console.log("User data saved to Firestore");
+
+          // Add to cache
+          userDataCache[user.uid] = username;
+        } catch (firestoreError) {
+          console.error("Error saving to Firestore:", firestoreError);
+          // Continue even if Firestore fails
+        }
+
+        return { success: true, user: user };
+      } catch (error) {
+        console.error("Sign up error:", error);
+        return { success: false, error: error.message };
+      }
+    };
+
+    // Sign in function - now supports email or username
+    window.signIn = async (emailOrUsername, password) => {
+      try {
+        // Check if input is email or username
+        let email = emailOrUsername;
+
+        // If it's a username, we need to look up the email
+        if (!emailOrUsername.includes('@')) {
+          // In a real app, you would query Firestore for username->email mapping
+          // For now, we'll assume it's an email
+          // This is a simplification - you should implement proper username lookup
+          alert("Please use your email address to sign in");
+          return { success: false, error: "Please use email for now" };
+        }
+
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+        // Get username from cache or Firestore
+        const user = userCredential.user;
+        let username = userDataCache[user.uid];
+
+        if (!username) {
+          // Try to get from Firestore
+          try {
+            const userDoc = await getUserData(user.uid);
+            username = userDoc?.username || user.email.split('@')[0];
+            userDataCache[user.uid] = username;
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+            username = user.email.split('@')[0];
+          }
+        }
+
+        console.log("User signed in:", user.email, "Username:", username);
+        return { success: true, user: user, username: username };
+      } catch (error) {
+        console.error("Sign in error:", error);
+        return { success: false, error: error.message };
+      }
+    };
+
+    // Logout function
+    window.logout = async () => {
+      try {
+        await signOut(auth);
+        console.log("User signed out");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    };
+  </script>
+
+  <script>
+    // Modal instances
+    let reportRestrictionModal = null;
+    let joinModal = null;
+let pwModal = null;
+    // Initialize modals on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      reportRestrictionModal = new bootstrap.Modal(document.getElementById('reportRestrictionModal'));
+      joinModal = new bootstrap.Modal(document.getElementById('joinModal'));
+pwModal = new bootstrap.Modal(document.getElementById('pw_modal')); // Initialize pwModal instance
+      // Set up form submissions
+      setupFormHandlers();
+    });
+
+    // Check authentication for report
+    function checkAuthForReport() {
+      // Check if user is logged in by looking at Firebase auth state
+      const joinBtn = document.getElementById('joinBtn');
+      if (joinBtn.style.display !== 'none') {
+        reportRestrictionModal.show();
+      } else {
+        // User is logged in, go to report page
+        window.location.href = 'report_page.html';
+      }
+    }
+
+    // Open sign in from report restriction modal
+    function openSignInFromReport() {
+      // First close the report restriction modal
+      reportRestrictionModal.hide();
+
+      // Wait a bit for modal to close completely
+      setTimeout(() => {
+        joinModal.show();
+        switchToSignIn();
+      }, 300);
+    }
+
+    // Open sign up from report restriction modal
+    function openSignUpFromReport() {
+      // First close the report restriction modal
+      reportRestrictionModal.hide();
+
+      // Wait a bit for modal to close completely
+      setTimeout(() => {
+        joinModal.show();
+        switchToSignUp();
+      }, 300);
+    }
+
+    // Join Modal Tabs Switching
+    function switchToSignUp() {
+      const signUpTab = document.getElementById('signup-tab');
+      const signUpTabInstance = new bootstrap.Tab(signUpTab);
+      signUpTabInstance.show();
+    }
+
+    function switchToSignIn() {
+      const signInTab = document.getElementById('signin-tab');
+      const signInTabInstance = new bootstrap.Tab(signInTab);
+      signInTabInstance.show();
+    }
+
+    // Setup form handlers
+    function setupFormHandlers() {
+       // Forgot Password Form Submission Handler (NEW CODE)
+      document.getElementById('forgotPasswordForm').addEventListener('submit', function (e) {
+          e.preventDefault(); // Stop the default form submission
+
+          const emailInput = document.getElementById('forgotPasswordEmail');
+          
+          // Check if the input is valid (non-empty due to 'required' attribute)
+          if (emailInput.checkValidity() && emailInput.value.trim() !== "") {
+              
+              // 1. Show the success alert
+              // Using the input value in the alert for better user feedback
+              alert(`We have sent the account details to your email (${emailInput.value}). Please check your gmail.`);
+              
+              // 2. Close the modal using the global pwModal instance
+              if (pwModal) {
+                  pwModal.hide();
+              }
+
+              // 3. Clear the input field
+              emailInput.value = '';
+
+          } else {
+              // If the input is empty or invalid, let the browser show the native validation message.
+              this.reportValidity();
+          }
+      });
+      // END NEW CODE
+      // Sign In Form Submission
+      document.getElementById('signinForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const emailOrUsername = document.getElementById('signinEmail').value;
+        const password = document.getElementById('signinPassword').value;
+
+        // Show loading state
+        const submitBtn = this.querySelector('.btn-modal');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Signing In...';
+        submitBtn.disabled = true;
+
+        try {
+          const result = await window.signIn(emailOrUsername, password);
+
+          if (result.success) {
+            // Success - modal will be closed by auth state change listener
+            console.log('Sign in successful');
+          } else {
+            alert('Sign in failed: ' + result.error);
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        } catch (error) {
+          alert('Sign in error: ' + error.message);
+          // Reset button
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+
+      // Sign Up Form Submission
+      document.getElementById('signupForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const firstName = document.getElementById('signupFirstName').value;
+        const lastName = document.getElementById('signupLastName').value;
+        const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+        // Validate passwords match
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+
+        // Validate password strength
+        if (password.length < 8) {
+          alert('Password must be at least 8 characters long!');
+          return;
+        }
+
+        // Validate username
+        if (username.length < 3) {
+          alert('Username must be at least 3 characters long!');
+          return;
+        }
+
+        if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+          alert('Username can only contain letters, numbers, and underscores!');
+          return;
+        }
+
+        // Show loading state
+        const submitBtn = this.querySelector('.btn-modal');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Creating Account...';
+        submitBtn.disabled = true;
+
+        try {
+          const result = await window.signUp(email, password, firstName, lastName, username);
+
+          if (result.success) {
+            // Success - modal will be closed by auth state change listener
+            console.log('Sign up successful');
+          } else {
+            alert('Sign up failed: ' + result.error);
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        } catch (error) {
+          alert('Sign up error: ' + error.message);
+          // Reset button
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Quiz functionality
+    let selectedOption = null;
+
+    function selectOption(element, option) {
+      // Remove selected class from all options
+      document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+
+      // Add selected class to clicked option
+      element.classList.add('selected');
+      selectedOption = option;
+    }
+
+    function createQuiz() {
+      if (selectedOption) {
+        alert(`You selected option ${selectedOption}! Creating your custom quiz...`);
+        // In a real application, this would redirect to a quiz creation page
+      } else {
+        alert("Please select an answer first to see how the quiz works!");
+      }
+    }
+
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function () {
+      // Animate cards on scroll
+      const cards = document.querySelectorAll('.learning-card, .feature-item');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(card);
+      });
+
+      // Navbar scroll effect
+      window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.style.padding = '10px 0';
+          navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        } else {
+          navbar.style.padding = '15px 0';
+          navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+        }
+      });
+    });
+      //Navbar change on scroll
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 80) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+
+</html>

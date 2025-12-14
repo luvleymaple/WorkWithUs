@@ -1,0 +1,64 @@
+body {
+  background-color: #f8fff6;
+}
+.container {
+  background-color: #e8f5e9;
+  padding: 80px;
+  border-radius: 30px;
+}
+/* Title */
+.reference-title {
+  font-family: 'Squada One', cursive; /* Updated font */
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #2bad82; /* Title color matching your code */
+}
+
+.btn-home {
+  background: linear-gradient(135deg, #2bad82, #2bad82);
+  color: #fff;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.reference-list{
+  margin: auto;
+}
+
+.btn-home:hover {
+  background: linear-gradient(135deg, #1e8965, #2bad82);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+
+/* List items */
+.reference-list li {
+  list-style-type: square;
+  font-family: 'Solway';
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Links inside list items */
+.reference-list li a {
+  color: #444; /* Your desired green color */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+}
+
+.reference-list li a:hover {
+  text-decoration: underline;
+  color: #2bad82; /* Hover color */
+}

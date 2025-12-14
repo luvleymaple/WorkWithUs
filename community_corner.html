@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Us | Community Corner</title>
+  <!-- Bootstap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icon CDN Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Font Links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="community_corner.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/website_logo.png" type="image/x-icon">
+  <!-- Font links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=Squada+One&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="img/website_logo.png" alt="Work With Us">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-custom" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-custom" href="awareness_hub.html">Awareness Hub</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-custom dropdown-toggle active" href="#" id="featuresDropdown" role="button"
+              data-bs-toggle="dropdown">
+              Our Features
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="learning_page.html"><i class="fas fa-graduation-cap me-2"></i> Learning
+                  Tool</a></li>
+              <li><a class="dropdown-item active" href="communitycorner.html"><i class="fas fa-users me-2"></i>
+                  Community Corner</a></li>
+              <li><a class="dropdown-item" href="blog_and_resource.html"><i class="fas fa-newspaper me-2"></i> Blog &
+                  Resources</a></li>
+              <li><a class="dropdown-item" href="park_show_case.html"><i class="fas fa-seedling me-2"></i> Park
+                  Showcase</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-custom" href="about_us.html">About Us</a>
+          </li>
+        </ul>
+        <div class="d-flex nav-auth align-items-center" id="authSection">
+          <!-- Report link will be updated dynamically -->
+          <a href="#" class="report-link" id="reportLink" onclick="checkAuthForReport()">
+            <i class="fas fa-flag me-1"></i> Report
+          </a>
+          <div id="userProfile" style="display: none;">
+            <div class="user-profile">
+              <div class="user-avatar" id="userAvatar">U</div>
+              <span class="user-name" id="userName">User</span>
+              <button class="logout-btn" onclick="logout()" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
+            </div>
+          </div>
+          <a href="#" class="btn btn-join" data-bs-toggle="modal" data-bs-target="#joinModal" id="joinBtn">
+            <i class="fas fa-user-plus me-1"></i> Join
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Join Modal (Same as index.html) -->
+  <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="joinModalLabel">Join WorkWithUs</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="joinTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link nav-custom2 active" id="signin-tab" data-bs-toggle="tab" data-bs-target="#signin"
+                type="button" role="tab">Sign In</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link nav-custom2" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup"
+                type="button" role="tab">Sign Up</button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="joinTabsContent">
+            <!-- Sign In Tab -->
+            <div class="tab-pane fade show active" id="signin" role="tabpanel">
+              <form id="signinForm">
+                <div class="mb-3">
+                  <label for="signinEmail" class="form-label">Email Address or Username</label>
+                  <input type="text" class="form-control" id="signinEmail" placeholder="Enter email or username"
+                    required>
+                </div>
+                <div class="mb-3">
+                  <label for="signinPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signinPassword" placeholder="Enter your password"
+                    required>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Remember me</label>
+                  <a href="#pw_modal" class="float-end text-decoration-none" data-bs-toggle="modal">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-modal">Sign In</button>
+                <div class="text-center mt-3">
+                  <p class="text-muted small">Or sign in with:</p>
+                  <button type="button" class="btn btn-outline-secondary btn-sm me-2 sign-up-login-btn">
+                    <a href="https://www.google.com/" class="sign-up-login"><i class="fab fa-google"></i> Google</a>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm sign-up-login-btn">
+                    <a href="https://www.facebook.com" class="sign-up-login"><i class="fab fa-facebook"></i>
+                      Facebook</a>
+                  </button>
+                </div>
+              </form>
+              <div class="form-footer">
+                <p>Don't have an account? <a href="#" onclick="switchToSignUp()">Sign Up</a></p>
+              </div>
+            </div>
+
+            <!-- Sign Up Tab -->
+            <div class="tab-pane fade" id="signup" role="tabpanel">
+              <form id="signupForm">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="signupFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="signupFirstName" placeholder="First name" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="signupLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="signupLastName" placeholder="Last name" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="signupUsername" class="form-label">Username *</label>
+                  <div class="input-group">
+                    <span class="input-group-text">@</span>
+                    <input type="text" class="form-control" id="signupUsername" placeholder="Choose a username"
+                      required>
+                  </div>
+                  <div class="form-text">This will be your display name on ParkRevival</div>
+                </div>
+                <div class="mb-3">
+                  <label for="signupEmail" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signupPassword" placeholder="Create a password"
+                    required>
+                  <div class="form-text">Minimum 8 characters with letters and numbers</div>
+                </div>
+                <div class="mb-3">
+                  <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control" id="signupConfirmPassword"
+                    placeholder="Confirm your password" required>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                  <label class="form-check-label" for="termsAgreement">
+                    I agree to the <a href="terms_of_service.html" class="text-decoration-none">Terms of Service</a> and
+                    <a href="privacy_policy.html" class="text-decoration-none">Privacy Policy</a>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-modal">Create Account</button>
+                <div class="text-center mt-3">
+                  <p class="text-muted small">Or sign up with:</p>
+                  <button type="button" class="btn btn-outline-secondary btn-sm me-2 sign-up-login-btn">
+                    <a href="https://www.google.com/" class="sign-up-login"><i class="fab fa-google"></i> Google</a>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm sign-up-login-btn">
+                    <a href="https://www.facebook.com" class="sign-up-login"><i class="fab fa-facebook"></i>
+                      Facebook</a>
+                  </button>
+                </div>
+              </form>
+              <div class="form-footer">
+                <p>Already have an account? <a href="#" onclick="switchToSignIn()">Sign In</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- forget password -->
+  <div class="modal fade" id="pw_modal" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content p-0 bg-for-pw position-relative">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+
+        <div class="inner-card p-4 text-center mx-auto my-5">
+          <h4 class="fw-title mb-2">Forgot Password</h4>
+          <form id="forgotPasswordForm">
+            <p class="form-text mb-3">Enter your email address</p>
+            <input type="email" class="form-control mb-3" id="forgotPasswordEmail" placeholder="Enter email address"
+              required>
+            <button class="btn btn-submit w-100 btn-modal" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Report Restriction Modal (Same as index.html) -->
+  <div class="modal fade" id="reportRestrictionModal" tabindex="-1" aria-labelledby="reportRestrictionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body report-restriction-modal">
+          <div class="report-restriction-icon">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <h3 class="report-restriction-title">You Must Sign Up to Report</h3>
+          <p class="report-restriction-message">
+            To ensure the quality and accountability of reports, we require users to have an account before submitting
+            park issues. This helps us follow up on reports and keep our community safe.
+          </p>
+
+          <div class="auth-options">
+            <button type="button" class="btn-auth-option btn-signin" onclick="openSignInFromReport()">
+              <i class="fas fa-sign-in-alt me-2"></i> Sign In
+            </button>
+            <button type="button" class="btn-auth-option btn-signup" onclick="openSignUpFromReport()">
+              <i class="fas fa-user-plus me-2"></i> Sign Up
+            </button>
+          </div>
+
+          <div class="mt-4">
+            <p class="text-muted small">
+              Already have an account? Sign in to access the reporting feature.
+              New to ParkRevival? Sign up for free in just a few minutes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="community-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="hero-content">
+            <h1 class="hero-title">Community Corner</h1>
+            <p class="hero-subtitle">Where neighbors become friends and green spaces become community treasures. Join
+              our vibrant community of park enthusiasts, volunteers, and changemakers.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is Community Corner -->
+  <section class="section-padding community-corner">
+    <div class="container">
+      <div class="corner-wrapper mx-auto">
+
+        <!-- Heading -->
+        <h2 class="text-center">What is Community Corner?</h2>
+        <p class="corner-subtitle text-center">
+          A digital corner where community voices come together to improve park safety and care.
+        </p>
+
+        <!-- Content Block -->
+        <div class="corner-content">
+          <div class="corner-icon">
+            <i class="fas fa-users"></i>
+          </div>
+
+          <div class="corner-text">
+            <h3>The Space for Collective Action</h3>
+            <p>
+              Community Corner is a place where youth and residents can connect, get noticed, and support
+              actions that make parks safer and more welcoming.
+            </p>
+            <p>
+              Whether it’s joining a cleanup, reporting safety concerns, or supporting local efforts,
+              this space helps turn awareness into meaningful community action.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <img src="img/final linebreak 1.png" alt="divider" class="divider-break"
+    style="height: 190px; width: 620px; margin-top: 0;">
+  <!-- Benefits -->
+  <section class="section-padding" style>
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-title" style="color: #444;">Why Join Community Corner?</h2>
+          <p class="text-center mt-3" style="font-family: 'Solway';">Experience the power of community engagement with
+            these amazing benefits</p>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card animate-on-scroll">
+            <div class="benefit-icon">
+              <i class="fas fa-users" style="color:#2bad82 ;"></i>
+            </div>
+            <h4 class="mb-3">Connect with Neighbors</h4>
+            <p>Build meaningful relationships with fellow park enthusiasts in your area. Share stories
+              and create lasting friendships.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card animate-on-scroll">
+            <div class="benefit-icon">
+              <i class="fas fa-calendar-check" style="color:#2bad82 ;"></i>
+            </div>
+            <h4 class="mb-3">Join Local Events</h4>
+            <p>Discover and participate in park cleanups, tree planting days, community gardens, and other local
+              events
+              happening near you.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card animate-on-scroll">
+            <div class="benefit-icon">
+              <i class="fas fa-lightbulb" style="color:#2bad82 ;"></i>
+            </div>
+            <h4 class="mb-3">Get noticed</h4>
+            <p>Worried about not noticing problems happening? Our website will help you to get noticed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Volunteer Spotlight -->
+  <section class="volunteer-spotlight">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="mb-4">Volunteer Spotlight</h2>
+            <img src="img/testimonial.png" class="volunteer-img" alt="Volunteer">
+            <h4 class="mb-3" style="font-family: 'Solway'; font-weight: 500;">Khin Thet Thet Shwe</h4>
+            <p class="volunteer-quote">"Community Corner connected me with amazing people who share my passion for green
+              spaces. Together, we've transformed our local park into a vibrant community hub!"</p>
+            <p style="font-family: 'Solway';">Volunteered in 4 events | 30+ hours contributed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- form -->
+  <div class="modal fade" id="register_modal" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content p-0 bg-for-pw position-relative">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+
+        <div class="inner-card p-4 text-center mx-auto my-5">
+          <h4 class="fw-title mb-2">Register form</h4>
+          <form id="register">
+            <input type="email" class="form-control mb-3" placeholder="Enter your email"
+              required>
+              <input class="form-control mb-3" placeholder="Contact number"
+              required>
+              <input class="form-control mb-3" placeholder="Enter your reason for joining this event"
+              required>
+            <button class="btn btn-submit w-100 btn-modal" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="img/final linebreak 1.png" alt="divider" class="divider-break"
+    style="height: 190px; width: 620px; margin-top: 0;">
+
+  <!-- Upcoming Events & Volunteer Opportunities -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-title">Upcoming Events & Volunteer Opportunities</h2>
+          <p style="font-size: 1.2rem; font-family: 'Solway'; margin-top: 15px;">Join our upcoming community events and
+            make a difference in your local parks</p>
+        </div>
+      </div>
+
+      <div class="events-section animate-on-scroll">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="event-card">
+              <div class="event-date">
+                <div class="event-day">23</div>
+                <div class="event-month">Jan</div>
+              </div>
+              <img src="img/real_life.jpg" class="event-img" alt="Community Cleanup">
+              <div class="event-body">
+                <h4 class="event-title"> Clean Up Your Park Day</h4>
+                <div class="event-tags">
+                  <span class="event-tag">Cleanup</span>
+                  <span class="event-tag">Family-Friendly</span>
+                  <span class="event-tag">Kan Thar Yar Park</span>
+                </div>
+                <p>Join us for our annual cleanup at your local Park. Gloves, bags, and refreshments provided.
+                  All
+                  ages welcome!</p>
+                <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-event mt-3">Join
+                    Event</button></a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="event-card">
+              <div class="event-date">
+                <div class="event-day">2</div>
+                <div class="event-month">Feb</div>
+              </div>
+              <img src="img/playground.jpg" class="event-img"
+                alt="Tree Planting">
+              <div class="event-body">
+                <h4 class="event-title">Repairing damaged playground equipment</h4>
+                <div class="event-tags">
+                  <span class="event-tag">Reparing</span>
+                  <span class="event-tag">For children</span>
+                  <span class="event-tag">Central Park</span>
+                </div>
+                <p>Celebrate For Children by helping us repair the broken play areas at Central Park. No experience
+                  needed </p>
+                <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-event mt-3">Join
+                    Event</button></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="event-card">
+              <div class="event-date">
+                <div class="event-day">15</div>
+                <div class="event-month">Mar</div>
+              </div>
+              <img src="img/bush.jpg" class="event-img"
+                alt="Community Garden">
+              <div class="event-body">
+                <h4 class="event-title">Trimming overgrown bushes and trees</h4>
+                <div class="event-tags">
+                  <span class="event-tag">Labour work</span>
+                  <span class="event-tag">Gardening</span>
+                  <span class="event-tag">Green Valley Park</span>
+                </div>
+                <p>Trimming overgrown bushes and trees to improve visibility and safe pathways. Let's try be contribute
+                  to a safer park with us!</p>
+                <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-event mt-3">Join
+                    Event</button></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="event-card">
+              <div class="event-date">
+                <div class="event-day">20</div>
+                <div class="event-month">May</div>
+              </div>
+              <img
+                src="https://images.unsplash.com/photo-1521334884684-d80222895322?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                class="event-img" alt="Community Meeting">
+              <div class="event-body">
+                <h4 class="event-title">Community Planning Meeting</h4>
+                <div class="event-tags">
+                  <span class="event-tag">Meeting</span>
+                  <span class="event-tag">Planning</span>
+                  <span class="event-tag">All Parks</span>
+                </div>
+                <p>Help shape the future of our parks! Join our monthly community meeting to discuss upcoming projects
+                  and initiatives.</p>
+                <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-event mt-3">Join
+                    Event</button></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="event-card">
+              <div class="event-date">
+                <div class="event-day">3</div>
+                <div class="event-month">Apr</div>
+              </div>
+              <img src="https://i.pinimg.com/1200x/b8/e0/bf/b8e0bf574d84f378a8ed86ed8814148a.jpg" class="event-img"
+                alt="Community Meeting">
+              <div class="event-body">
+                <h4 class="event-title">Organizing pavement for safer paths</h4>
+                <div class="event-tags">
+                  <span class="event-tag">Meeting</span>
+                  <span class="event-tag">Safer paths</span>
+                  <span class="event-tag">Hinther</span>
+                </div>
+                <p>Organizing pavement repair events to fix cracks, potholes, and uneven paths that may cause trips or
+                  falls, especially for elderly visitors.</p>
+                <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-event mt-3">Join
+                    Event</button></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="event-card">
+              <div class="event-date">
+                <div class="event-day">20</div>
+                <div class="event-month">Apr</div>
+              </div>
+              <img src="https://i.pinimg.com/1200x/74/68/38/746838afd41a60d534d63fd8f3383b3f.jpg" class="event-img"
+                alt="Community Meeting">
+              <div class="event-body">
+                <h4 class="event-title">Installing and repainting safety signs</h4>
+                <div class="event-tags">
+                  <span class="event-tag">Fixing</span>
+                  <span class="event-tag">Planning</span>
+                  <span class="event-tag">Central park</span>
+                </div>
+                <p>Installing and repainting safety signs and park rules boards, improving awareness of park visitors
+                </p>
+                <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-event mt-3">Join
+                    Event</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h3 class="coming-soon">More updates coming soon...<i class="fas fa-arrow-right ms-2"></i></h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown Timer -->
+  <section class="countdown-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="countdown-title">Only A Few Days Left to Join Clean-up Event!</h2>
+          <p class="countdown-subtitle">Kan Thar Yar Park Cleanup Day</p>
+
+          <div class="countdown-timer" id="countdown">
+            <div class="countdown-item">
+              <div class="countdown-number" id="days">03</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="hours">00</div>
+              <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="minutes">00</div>
+              <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="seconds">00</div>
+              <div class="countdown-label">Seconds</div>
+            </div>
+          </div>
+          <a href="#register_modal" data-bs-toggle="modal"> <button class="btn btn-countdown">Register Now <i
+                class="fas fa-arrow-right ms-2"></i></button></a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h2 class="footer-logo-title"><img src="img/logo-v2.png" alt="logo" class="footer-logo"> Work With Us</h2>
+          <p class="footer-description">Transforming community parks through community engagement, sharing awareness,
+            and volunteer action. Join us in creating greener, healthier spaces for everyone!</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61584121263469" class="social-icon"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://t.me/wearedoremi" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.youtube.com/channel/UCJ5Jz1-wgFoY7082MpRcwKg" class="social-icon"><i
+                class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <h2 class="footer-heading">Quick Links</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="awareness_hub.html">Awareness Hub</a></li>
+            <li><a href="about_us.html">About Us</a></li>
+            <li><a href="report_page.html">Report</a></li>
+            <li><a href="reference.html">Reference</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <h2 class="footer-heading">Our Features</h2>
+          <ul class="footer-links">
+            <li><a href="learning_page.html">Learning Tool</a></li>
+            <li><a href="community_corner.html">Community Corner</a></li>
+            <li><a href="blog_and_resource.html">Blog & Resources</a></li>
+            <li><a href="park_show_case.html">Park Showcase</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12">
+          <h2 class="footer-heading">Contact Info</h2>
+          <ul class="footer-links">
+            <li><i class="fas fa-phone me-2"></i> (+95) 12345 6789</li>
+            <li><i class="fas fa-envelope me-2"></i> info@workwithus.org</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 9AM-5PM</li>
+            <li><i class="bi bi-geo-alt-fill me-2"></i> No. 635 J, Yoe Ma Yeik Thar (Pyae Road) 2nd Ward, Kamayut
+              Township, Yangon</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-bottom">
+            <p>&copy;2025 Work With Us. All rights reserved. | <a href="privacy_policy.html" class="bottom">Privacy
+                Policy</a> | <a href="terms_of_service.html" class="bottom">Terms of Service</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    // Import the functions you need from the SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      updateProfile
+    } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzQIP_UpuK8WhtQNtpoRNfW_kSI-FDY2Q",
+      authDomain: "park-revival.firebaseapp.com",
+      databaseURL: "https://park-revival-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "park-revival",
+      storageBucket: "park-revival.firebasestorage.app",
+      messagingSenderId: "723557322600",
+      appId: "1:723557322600:web:f59d2b23edcf25a9bf50dd"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Export auth for use in other functions
+    window.auth = auth;
+    window.db = db;
+
+    // User data cache
+    let userDataCache = {};
+
+    // Check authentication state
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        updateUIForLoggedInUser(user);
+        console.log("User is signed in:", user.email);
+      } else {
+        // User is signed out
+        updateUIForLoggedOutUser();
+        console.log("User is signed out");
+      }
+    });
+
+    // Update UI for logged in user
+    function updateUIForLoggedInUser(user) {
+      const userProfile = document.getElementById('userProfile');
+      const joinBtn = document.getElementById('joinBtn');
+      const reportLink = document.getElementById('reportLink');
+
+      // Show user profile and hide join button
+      userProfile.style.display = 'block';
+      joinBtn.style.display = 'none';
+
+      // Update user info
+      const userName = document.getElementById('userName');
+      const userAvatar = document.getElementById('userAvatar');
+
+      // Get user's first name or email prefix
+      const displayName = user.displayName || user.email.split('@')[0];
+      userName.textContent = displayName;
+      userAvatar.textContent = displayName.charAt(0).toUpperCase();
+
+      // Change report link to go directly to report page
+      reportLink.removeAttribute('onclick');
+      reportLink.setAttribute('href', 'report_page.html');
+      reportLink.innerHTML = '<i class="fas fa-flag me-1"></i> Report';
+
+      // Close any open modal
+      const joinModal = bootstrap.Modal.getInstance(document.getElementById('joinModal'));
+      if (joinModal) {
+        joinModal.hide();
+      }
+
+      const reportRestrictionModal = bootstrap.Modal.getInstance(document.getElementById('reportRestrictionModal'));
+      if (reportRestrictionModal) {
+        reportRestrictionModal.hide();
+      }
+    }
+
+    // Function to get user data from Firestore
+    async function getUserData(userId) {
+      try {
+        const userDocRef = doc(db, "users", userId);
+        // We'll handle this in a separate function
+        return null;
+      } catch (error) {
+        console.error("Error getting user data:", error);
+        return null;
+      }
+    }
+
+    // Update UI for logged out user
+    function updateUIForLoggedOutUser() {
+      const userProfile = document.getElementById('userProfile');
+      const joinBtn = document.getElementById('joinBtn');
+      const reportLink = document.getElementById('reportLink');
+
+      // Hide user profile and show join button
+      userProfile.style.display = 'none';
+      joinBtn.style.display = 'inline-block';
+
+      // Reset report link to check authentication
+      reportLink.setAttribute('href', '#');
+      reportLink.setAttribute('onclick', 'checkAuthForReport()');
+      reportLink.innerHTML = '<i class="fas fa-flag me-1"></i> Report';
+    }
+
+    // Sign up function
+    window.signUp = async (email, password, firstName, lastName, username) => {
+      try {
+        // First check if username is available
+        // (You would need to implement username checking in Firestore)
+
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        console.log("User signed up:", user);
+
+        // Update user profile with display name
+        await updateProfile(user, {
+          displayName: username
+        });
+
+        // Save additional user data to Firestore
+        try {
+          const userData = {
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            email: email,
+            createdAt: new Date().toISOString()
+          };
+
+          await setDoc(doc(db, "users", user.uid), userData);
+          console.log("User data saved to Firestore");
+
+          // Add to cache
+          userDataCache[user.uid] = username;
+        } catch (firestoreError) {
+          console.error("Error saving to Firestore:", firestoreError);
+          // Continue even if Firestore fails
+        }
+
+        return { success: true, user: user };
+      } catch (error) {
+        console.error("Sign up error:", error);
+        return { success: false, error: error.message };
+      }
+    };
+
+    // Sign in function - now supports email or username
+    window.signIn = async (emailOrUsername, password) => {
+      try {
+        // Check if input is email or username
+        let email = emailOrUsername;
+
+        if (!emailOrUsername.includes('@')) {
+          alert("Please use your email address to sign in");
+          return { success: false, error: "Please use email for now" };
+        }
+
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+        // Get username from cache or Firestore
+        const user = userCredential.user;
+        let username = userDataCache[user.uid];
+
+        if (!username) {
+          // Try to get from Firestore
+          try {
+            const userDoc = await getUserData(user.uid);
+            username = userDoc?.username || user.email.split('@')[0];
+            userDataCache[user.uid] = username;
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+            username = user.email.split('@')[0];
+          }
+        }
+
+        console.log("User signed in:", user.email, "Username:", username);
+        return { success: true, user: user, username: username };
+      } catch (error) {
+        console.error("Sign in error:", error);
+        return { success: false, error: error.message };
+      }
+    };
+
+    // Logout function
+    window.logout = async () => {
+      try {
+        await signOut(auth);
+        console.log("User signed out");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    };
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Modal instances
+    let reportRestrictionModal = null;
+    let joinModal = null;
+    let pwModal = null;
+
+    // Initialize modals on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      reportRestrictionModal = new bootstrap.Modal(document.getElementById('reportRestrictionModal'));
+      joinModal = new bootstrap.Modal(document.getElementById('joinModal'));
+      pwModal = new bootstrap.Modal(document.getElementById('pw_modal')); // Initialize pwModal instance
+      // Set up form submissions
+      setupFormHandlers();
+
+      // Animate elements that are already in view
+      animateOnScroll();
+
+      // Set up event listeners
+      window.addEventListener('scroll', () => {
+        updateNavbar();
+        animateOnScroll();
+      });
+
+      // Initialize countdown
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    });
+
+    // Check authentication for report
+    function checkAuthForReport() {
+      // Check if user is logged in by looking at Firebase auth state
+      const joinBtn = document.getElementById('joinBtn');
+      if (joinBtn.style.display !== 'none') {
+        reportRestrictionModal.show();
+      } else {
+        // User is logged in, go to report page
+        window.location.href = 'report_page.html';
+      }
+    }
+
+    // Open sign in from report restriction modal
+    function openSignInFromReport() {
+      // First close the report restriction modal
+      reportRestrictionModal.hide();
+
+      // Wait a bit for modal to close completely
+      setTimeout(() => {
+        joinModal.show();
+        switchToSignIn();
+      }, 300);
+    }
+
+    // Open sign up from report restriction modal
+    function openSignUpFromReport() {
+      // First close the report restriction modal
+      reportRestrictionModal.hide();
+
+      // Wait a bit for modal to close completely
+      setTimeout(() => {
+        joinModal.show();
+        switchToSignUp();
+      }, 300);
+    }
+
+    // Join Modal Tabs Switching
+    function switchToSignUp() {
+      const signUpTab = document.getElementById('signup-tab');
+      const signUpTabInstance = new bootstrap.Tab(signUpTab);
+      signUpTabInstance.show();
+    }
+
+    function switchToSignIn() {
+      const signInTab = document.getElementById('signin-tab');
+      const signInTabInstance = new bootstrap.Tab(signInTab);
+      signInTabInstance.show();
+    }
+
+    // Setup form handlers
+    function setupFormHandlers() {
+      // Forgot Password Form Submission Handler (NEW CODE)
+      document.getElementById('forgotPasswordForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Stop the default form submission
+
+        const emailInput = document.getElementById('forgotPasswordEmail');
+
+        // Check if the input is valid (non-empty due to 'required' attribute)
+        if (emailInput.checkValidity() && emailInput.value.trim() !== "") {
+
+          // 1. Show the success alert
+          // Using the input value in the alert for better user feedback
+          alert(`We have sent the account details to your email (${emailInput.value}). Please check your gmail.`);
+
+          // 2. Close the modal using the global pwModal instance
+          if (pwModal) {
+            pwModal.hide();
+          }
+
+          // 3. Clear the input field
+          emailInput.value = '';
+
+        } else {
+          // If the input is empty or invalid, let the browser show the native validation message.
+          this.reportValidity();
+        }
+      });
+      // Sign In Form Submission
+      document.getElementById('signinForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const emailOrUsername = document.getElementById('signinEmail').value;
+        const password = document.getElementById('signinPassword').value;
+
+        // Show loading state
+        const submitBtn = this.querySelector('.btn-modal');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Signing In...';
+        submitBtn.disabled = true;
+
+        try {
+          const result = await window.signIn(emailOrUsername, password);
+
+          if (result.success) {
+            // Success - modal will be closed by auth state change listener
+            console.log('Sign in successful');
+          } else {
+            alert('Sign in failed: ' + result.error);
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        } catch (error) {
+          alert('Sign in error: ' + error.message);
+          // Reset button
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+
+      // Sign Up Form Submission
+      document.getElementById('signupForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const firstName = document.getElementById('signupFirstName').value;
+        const lastName = document.getElementById('signupLastName').value;
+        const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+        // Validate passwords match
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+
+        // Validate password strength
+        if (password.length < 8) {
+          alert('Password must be at least 8 characters long!');
+          return;
+        }
+
+        // Validate username
+        if (username.length < 3) {
+          alert('Username must be at least 3 characters long!');
+          return;
+        }
+
+        if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+          alert('Username can only contain letters, numbers, and underscores!');
+          return;
+        }
+
+        // Show loading state
+        const submitBtn = this.querySelector('.btn-modal');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Creating Account...';
+        submitBtn.disabled = true;
+
+        try {
+          const result = await window.signUp(email, password, firstName, lastName, username);
+
+          if (result.success) {
+            // Success - modal will be closed by auth state change listener
+            console.log('Sign up successful');
+          } else {
+            alert('Sign up failed: ' + result.error);
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        } catch (error) {
+          alert('Sign up error: ' + error.message);
+          // Reset button
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Countdown Timer
+    function updateCountdown() {
+      // Set the target date (3 days from now)
+      const now = new Date();
+      const targetDate = new Date(now);
+      targetDate.setDate(now.getDate() + 42);
+      targetDate.setHours(17, 0, 0, 0); // Set to 5:00 PM in 3 days
+
+      const timeDifference = targetDate - now;
+
+      if (timeDifference <= 0) {
+        // Countdown finished
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+
+      // Calculate days, hours, minutes, seconds
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      // Update display
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    // Animate on scroll functionality
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+
+        if (elementPosition < screenPosition) {
+          element.classList.add('animated');
+        }
+      });
+    }
+
+    // Navbar background change on scroll
+    function updateNavbar() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '10px 0';
+        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.padding = '15px 0';
+        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+      }
+    }
+
+    // Event buttons
+    document.querySelectorAll('.btn-event').forEach(button => {
+      button.addEventListener('click', function () {
+        const eventTitle = this.closest('.event-card').querySelector('.event-title').textContent;
+        alert(`Thank you for your interest in "${eventTitle}"! You'll receive more details via email shortly after filling out the register form.`);
+      });
+    });
+
+    // Countdown button
+    document.querySelector('.btn-countdown').addEventListener('click', function () {
+      alert("You've successfully registered for the Spring Park Cleanup Day! Check your email for confirmation and details.");
+    });
+
+    //Navbar change on scroll
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 80) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Modal
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const registerForm = document.getElementById("register");
+
+    registerForm.addEventListener("submit", function (e) {
+      e.preventDefault(); // stop page refresh
+
+      alert("Your registration has been submitted successfully! Check your email for more details.");
+
+      // Close the modal
+      const modalElement = document.getElementById("register_modal");
+      const modalInstance = bootstrap.Modal.getInstance(modalElement);
+      modalInstance.hide();
+
+      // Reset form fields
+      registerForm.reset();
+    });
+
+  });
+  </script>
+</body>
+
+</html>

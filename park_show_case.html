@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Us | Park Report Page</title>
+
+  <!-- Firebase -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Bootstap CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icon CDN Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Font Links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Font links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=Squada+One&display=swap"
+    rel="stylesheet">
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="report_page.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/website_logo.png" type="image/x-icon">
+  <style>
+    header {
+      background: linear-gradient(rgba(66, 67, 61, 0.773), rgba(51, 50, 48, 0.686)), url(https://i.pinimg.com/1200x/43/20/54/4320543683361ffb517ba11bcb38360b.jpg);
+    }
+
+    .small-login-btn {
+      display: inline-flex;
+      /* Keep icon and text aligned */
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 17px;
+      width: auto;
+      margin: 20px auto 0;
+      background-color: #2bad82;
+      color: white;
+      font-family: "Solway";
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .small-login-btn i {
+      font-size: 2rem;
+      margin-top: 10px;
+      margin-right: 6px;
+    }
+
+    .small-login-btn:hover {
+      background-color: #1c926b;
+    }
+  </style>
+</head>
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1 style="font-family: 'Squada One';"><i class="fas fa-tree"></i> Park Showcase</h1>
+      <p style="font-family: 'Solway';">Submit your ideas and suggestions on the park features to help keep our parks
+        beautiful</p>
+    </header>
+
+    <div class="user-info">
+      <div>
+        <span style="font-family: 'Solway';"><i class="fas fa-user"></i> Current User:</span>
+        <span class="user-id" id="currentUserId" style="font-family: 'Solway';">Checking...</span>
+      </div>
+      <div id="loginStatus" style="font-family: 'Solway';">
+        <i class="fas fa-spinner fa-spin"></i> Checking authentication...
+      </div>
+    </div>
+
+    <div class="app-content">
+      <section class="form-section">
+        <h2 style="font-family: 'Solway';"><i class="fas fa-edit"></i> Submit New Suggestions</h2>
+
+        <form id="reportForm">
+          <div class="form-group" style="font-family: 'Solway';">
+            <label for="reportTitle" style="font-family: 'Solway';">Title</label>
+            <input type="text" id="reportTitle" placeholder="e.g., add a playground near the trees" required>
+          </div>
+
+          <div class="form-group" style="font-family: 'Solway';">
+            <label for="reportDesc" style="font-family: 'Solway';">Description</label>
+            <textarea id="reportDesc" placeholder="Describe the suggestion in detail..." required></textarea>
+          </div>
+
+          <div class="form-group" style="font-family: 'Solway';">
+            <label for="reportImageUrl" style="font-family: 'Solway';">Image URL (Optional)</label>
+            <div class="url-input-group" style="font-family: 'Solway';">
+              <input type="url" id="reportImageUrl" placeholder="https://example.com/image.jpg"
+                style="font-family: 'Solway';">
+              <button type="button" class="test-url-btn" id="testUrlBtn" style="font-family: 'Solway';">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+            </div>
+            <div class="url-help">
+              Enter a direct image URL (e.g., .jpg, .png, .gif)
+            </div>
+            <div class="image-preview" id="imagePreview">
+              <img id="previewImage" src="" alt="Image Preview">
+              <p id="previewError" style="color: #d32f2f; margin-top: 5px; display: none; font-family: 'Solway';">
+                <i class="fas fa-exclamation-triangle"></i> Cannot load image from this URL
+              </p>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" style="font-family: 'Solway';">
+            <i class="fas fa-paper-plane"></i> Submit Showcase
+          </button>
+        </form>
+      </section>
+
+      <section class="reports-section">
+        <div class="section-header">
+          <h2 style="font-family: 'Solway';"><i class="fas fa-list"></i> Park Showcases</h2>
+          <div class="filter-tabs" style="font-family: 'Solway';">
+            <button class="filter-btn active" data-filter="all">All Showcases</button>
+            <button class="filter-btn" data-filter="mine">My Showcases</button>
+          </div>
+        </div>
+
+        <div class="reports-list" id="reportsList">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <p style="font-family: 'Solway';">Checking authentication...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p style="font-family: 'Solway';">Park Showcase System &copy; 2025 | Login required to submit and view showcases
+      </p>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp,
+      query,
+      orderBy,
+      onSnapshot,
+      doc,
+      deleteDoc
+    } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzQIP_UpuK8WhtQNtpoRNfW_kSI-FDY2Q",
+      authDomain: "park-revival.firebaseapp.com",
+      databaseURL: "https://park-revival-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "park-revival",
+      storageBucket: "park-revival.firebasestorage.app",
+      messagingSenderId: "723557322600",
+      appId: "1:723557322600:web:f59d2b23edcf25a9bf50dd"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Export for use in other functions
+    window.auth = auth;
+    window.db = db;
+    window.firestore = {
+      collection,
+      addDoc,
+      serverTimestamp,
+      query,
+      orderBy,
+      onSnapshot,
+      doc,
+      deleteDoc
+    };
+
+    // Check authentication state when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+      checkAuth();
+    });
+
+    // Function to check authentication
+    async function checkAuth() {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in
+          console.log("User is signed in:", user.email);
+          const userName =
+            user.displayName ||
+            user.email?.split('@')[0] ||
+            user.uid;
+          document.getElementById('currentUserId').textContent = userName;
+          document.getElementById('loginStatus').innerHTML = '<i class="fas fa-check-circle"></i> Connected as ' + user.email;
+          loadReports(); // Load reports only if user is logged in
+        } else {
+          // User is signed out
+          console.log("User is signed out");
+          document.getElementById('loginStatus').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please login first';
+          document.getElementById('reportsList').innerHTML = `
+          <div class="no-reports">
+            <i class="fas fa-lock"></i>
+            <p>Please login to view and submit showcases</p>
+            <button onclick="redirectToLogin()" class="small-login-btn">
+              <i class="bi bi-box-arrow-right"></i> Go to Login
+            </button>
+          </div>
+        `;
+
+          // Disable form
+          document.getElementById('reportForm').style.opacity = '0.5';
+          document.getElementById('reportForm').querySelectorAll('input, textarea, button').forEach(el => {
+            el.disabled = true;
+          });
+        }
+      });
+    }
+
+    // Redirect to login page
+    window.redirectToLogin = function () {
+      window.location.href = 'index.html'; // Your main page with login
+    };
+
+    // Add logout and home buttons to user info section
+    document.addEventListener('DOMContentLoaded', function () {
+      const userInfo = document.querySelector('.user-info');
+      if (userInfo) {
+        // Home Button
+        const homeBtn = document.createElement('button');
+        homeBtn.innerHTML = '<i class="fas fa-home"></i> Home';
+        homeBtn.style.marginLeft = '10px';
+        homeBtn.style.padding = '5px 10px';
+        homeBtn.style.background = '#2bad82';
+        homeBtn.style.fontFamily = 'Solway';
+        homeBtn.style.color = 'white';
+        homeBtn.style.border = 'none';
+        homeBtn.style.borderRadius = '4px';
+        homeBtn.style.cursor = 'pointer';
+        homeBtn.onclick = () => {
+          window.location.href = 'index.html';
+        };
+        userInfo.appendChild(homeBtn);
+      }
+    });
+  </script>
+
+  <script>
+    // Global variables
+    let currentUser = null;
+    let allReports = [];
+    let currentFilter = 'all';
+
+    // ---------------- Initialize App ----------------
+    document.addEventListener('DOMContentLoaded', function () {
+      // Wait for Firebase to be ready
+      setTimeout(() => {
+        // Setup form submission
+        document.getElementById('reportForm').addEventListener('submit', submitReport);
+
+        // Setup URL preview button
+        document.getElementById('testUrlBtn').addEventListener('click', testImageUrl);
+
+        // Setup filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.getAttribute('data-filter');
+            displayReports();
+          });
+        });
+      }, 1000);
+    });
+
+    // ---------------- Test Image URL ----------------
+    function testImageUrl() {
+      const urlInput = document.getElementById('reportImageUrl');
+      const url = urlInput.value.trim();
+      const preview = document.getElementById('previewImage');
+      const previewContainer = document.getElementById('imagePreview');
+      const errorMsg = document.getElementById('previewError');
+
+      if (!url) {
+        alert("Please enter an image URL first");
+        return;
+      }
+
+      // Reset display
+      previewContainer.style.display = 'block';
+      preview.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      // Show loading
+      preview.src = '';
+      preview.alt = 'Loading...';
+
+      // Test if URL loads successfully
+      const testImage = new Image();
+      testImage.onload = function () {
+        preview.src = url;
+        preview.style.display = 'block';
+        errorMsg.style.display = 'none';
+        urlInput.style.borderColor = '#4caf50';
+      };
+
+      testImage.onerror = function () {
+        preview.style.display = 'none';
+        errorMsg.style.display = 'block';
+        urlInput.style.borderColor = '#d32f2f';
+      };
+
+      testImage.src = url;
+
+      // Set timeout in case image takes too long
+      setTimeout(() => {
+        if (!testImage.complete) {
+          preview.style.display = 'none';
+          errorMsg.style.display = 'block';
+          errorMsg.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Image is taking too long to load';
+        }
+      }, 5000);
+    }
+
+    // ---------------- Submit Report ----------------
+    async function submitReport(e) {
+      e.preventDefault();
+
+      if (!window.auth.currentUser) {
+        alert("Please login first to submit showcases");
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const title = document.getElementById('reportTitle').value.trim();
+      const desc = document.getElementById('reportDesc').value.trim();
+      const imageUrl = document.getElementById('reportImageUrl').value.trim();
+
+      if (!title || !desc) {
+        alert("Please provide both a title and description");
+        return;
+      }
+
+      // Validate URL if provided
+      if (imageUrl && !isValidUrl(imageUrl)) {
+        alert("Please enter a valid URL (starting with http:// or https://)");
+        return;
+      }
+
+      // Disable submit button and show loading
+      const submitBtn = document.querySelector('.submit-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled = true;
+
+      // Create report data
+      const reportData = {
+        userId: window.auth.currentUser.uid,
+        userEmail: window.auth.currentUser.email,
+        name: title,
+        desc: desc,
+        image: imageUrl || "",
+        createdAt: window.firestore.serverTimestamp(),
+        userName: window.auth.currentUser.displayName || window.auth.currentUser.email.split('@')[0]
+      };
+
+      try {
+        // Create Firestore document
+        const docRef = await window.firestore.addDoc(
+          window.firestore.collection(window.db, "reports"),
+          reportData
+        );
+
+        // Add to local array and display
+        reportData.id = docRef.id;
+        reportData.createdAt = new Date();
+        allReports.unshift(reportData);
+
+        // Display reports
+        displayReports();
+
+        // Reset form
+        document.getElementById('reportForm').reset();
+        document.getElementById('imagePreview').style.display = 'none';
+        document.getElementById('reportImageUrl').style.borderColor = '#ddd';
+
+        alert("Report submitted successfully!");
+      } catch (err) {
+        console.error(err);
+        alert("Error: " + err.message);
+      } finally {
+        // Re-enable submit button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    }
+
+    // ---------------- Validate URL ----------------
+    function isValidUrl(string) {
+      try {
+        new URL(string);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    // ---------------- Load Reports ----------------
+    function loadReports() {
+      const reportsList = document.getElementById('reportsList');
+
+      if (!window.auth.currentUser) {
+        reportsList.innerHTML = `
+          <div class="no-reports">
+            <i class="fas fa-lock"></i>
+            <p>Please login to view showcases</p>
+          </div>
+        `;
+        return;
+      }
+
+      const q = window.firestore.query(
+        window.firestore.collection(window.db, "reports"),
+        window.firestore.orderBy("createdAt", "desc")
+      );
+
+      window.firestore.onSnapshot(q, (snapshot) => {
+        allReports = [];
+
+        snapshot.forEach((doc) => {
+          const report = doc.data();
+          report.id = doc.id;
+
+          // Convert Firestore timestamp to Date
+          if (report.createdAt && report.createdAt.toDate) {
+            report.createdAt = report.createdAt.toDate();
+          }
+
+          allReports.push(report);
+        });
+
+        displayReports();
+      }, (error) => {
+        console.error("Error loading reports:", error);
+        reportsList.innerHTML = `
+          <div class="no-reports">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Error loading showcases. Please refresh the page.</p>
+          </div>
+        `;
+      });
+    }
+
+    // ---------------- Display Reports ----------------
+    function displayReports() {
+      const reportsList = document.getElementById('reportsList');
+
+      if (!allReports || allReports.length === 0) {
+        reportsList.innerHTML = `
+          <div class="no-reports">
+            <i class="fas fa-inbox"></i>
+            <p>No showcases found. Be the first to submit a showcase!</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Filter reports
+      let filteredReports = allReports;
+      if (currentFilter === 'mine' && window.auth.currentUser) {
+        filteredReports = allReports.filter(report => report.userId === window.auth.currentUser.uid);
+      }
+
+      // Generate HTML for reports
+      let reportsHTML = '';
+
+      filteredReports.forEach(report => {
+        const isMine = window.auth.currentUser && report.userId === window.auth.currentUser.uid;
+        const reportDate = report.createdAt ? report.createdAt.toLocaleDateString() + ' ' + report.createdAt.toLocaleTimeString() : 'Unknown date';
+        const hasImage = report.image && report.image.trim() !== '';
+        const userDisplayName = report.userName || report.userEmail || 'Anonymous';
+
+        reportsHTML += `
+          <div class="report-card ${isMine ? 'mine' : ''}">
+            <div class="report-header">
+              <h3 class="report-title">${report.name}</h3>
+              ${isMine ? '<span class="report-mine"><i class="fas fa-user"></i> My Report</span>' : ''}
+            </div>
+            
+            <p class="report-desc">${report.desc}</p>
+            
+            ${hasImage ?
+            `<img src="${report.image}" alt="Report image" class="report-image" onerror="this.style.display='none'" style="display: block;">`
+            : ''}
+            
+            <div class="report-footer">
+              <div>
+                <i class="far fa-calendar"></i> ${reportDate}
+              </div>
+              <div>
+                <i class="fas fa-user"></i> ${userDisplayName}
+              </div>
+              <div>
+                ${hasImage ? '<i class="fas fa-link"></i> Has image' : '<i class="far fa-image"></i> No image'}
+              </div>
+            </div>
+            
+            ${isMine ?
+            `<div class="report-actions">
+              <button class="delete-btn" onclick="confirmDeleteReport('${report.id}')">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+            </div>`
+            : ''}
+          </div>
+        `;
+      });
+
+      reportsList.innerHTML = reportsHTML;
+
+      // Add click event to images for larger view
+      document.querySelectorAll('.report-image').forEach(img => {
+        img.addEventListener('click', function () {
+          viewImage(this.src);
+        });
+      });
+    }
+
+    // ---------------- Confirm Delete Report ----------------
+    function confirmDeleteReport(reportId) {
+      // Create confirmation modal
+      const modal = document.createElement('div');
+      modal.className = 'confirm-delete-modal';
+      modal.innerHTML = `
+        <div class="confirm-delete-content">
+          <h3><i class="fas fa-exclamation-triangle"></i> Delete Report</h3>
+          <p>Are you sure you want to delete this showcase?</p>
+          <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">
+            This action cannot be undone.
+          </p>
+          <div class="confirm-buttons">
+            <button class="confirm-btn cancel-delete" onclick="cancelDelete()">
+              <i class="fas fa-times"></i> Cancel
+            </button>
+            <button class="confirm-btn confirm-delete" onclick="deleteReport('${reportId}')">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      // Add escape key handler
+      const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+          cancelDelete();
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+
+      // Store modal reference
+      window.currentDeleteModal = modal;
+      window.currentDeleteModalEscapeHandler = handleEscape;
+    }
+
+    // ---------------- Cancel Delete ----------------
+    function cancelDelete() {
+      if (window.currentDeleteModal) {
+        document.body.removeChild(window.currentDeleteModal);
+        document.removeEventListener('keydown', window.currentDeleteModalEscapeHandler);
+        window.currentDeleteModal = null;
+        window.currentDeleteModalEscapeHandler = null;
+      }
+    }
+
+    // ---------------- Delete Report ----------------
+    async function deleteReport(reportId) {
+      if (!window.auth.currentUser) {
+        alert("Please login to delete showcases");
+        return;
+      }
+
+      // Show loading overlay
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.className = 'loading-overlay';
+      loadingOverlay.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+      document.body.appendChild(loadingOverlay);
+
+      try {
+        // Delete from Firestore
+        await window.firestore.deleteDoc(
+          window.firestore.doc(window.db, "reports", reportId)
+        );
+
+        // Remove from local array
+        allReports = allReports.filter(report => report.id !== reportId);
+
+        // Remove loading overlay
+        document.body.removeChild(loadingOverlay);
+
+        // Remove confirmation modal
+        cancelDelete();
+
+        // Show success message
+        alert("Showcase deleted successfully!");
+
+        // Refresh display
+        displayReports();
+      } catch (error) {
+        console.error("Error deleting showcase:", error);
+
+        // Remove loading overlay
+        document.body.removeChild(loadingOverlay);
+
+        // Remove confirmation modal
+        cancelDelete();
+
+        alert("Error deleting showcase: " + error.message);
+      }
+    }
+
+    // ---------------- View Image Fullscreen ----------------
+    function viewImage(src) {
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+      overlay.style.zIndex = '1000';
+      overlay.style.display = 'flex';
+      overlay.style.justifyContent = 'center';
+      overlay.style.alignItems = 'center';
+      overlay.style.cursor = 'pointer';
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.style.maxWidth = '90%';
+      img.style.maxHeight = '90%';
+      img.style.borderRadius = '8px';
+      img.style.boxShadow = '0 5px 25px rgba(0, 0, 0, 0.5)';
+      img.onerror = function () {
+        img.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
+      };
+
+      overlay.appendChild(img);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener('click', function () {
+        document.body.removeChild(overlay);
+      });
+    }
+  </script>
+
+</body>
+
+</html>
