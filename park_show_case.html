@@ -268,7 +268,7 @@
     });
   </script>
 
-  <script>
+ <script>
     // Global variables
     let currentUser = null;
     let allReports = [];
@@ -388,9 +388,9 @@
       };
 
       try {
-        // Create Firestore document
+        // Create Firestore document, using the **'showcases'** collection
         const docRef = await window.firestore.addDoc(
-          window.firestore.collection(window.db, "reports"),
+          window.firestore.collection(window.db, "**showcases**"),
           reportData
         );
 
@@ -407,7 +407,7 @@
         document.getElementById('imagePreview').style.display = 'none';
         document.getElementById('reportImageUrl').style.borderColor = '#ddd';
 
-        alert("Report submitted successfully!");
+        alert("Showcase submitted successfully!");
       } catch (err) {
         console.error(err);
         alert("Error: " + err.message);
@@ -442,8 +442,9 @@
         return;
       }
 
+      // Query the **'showcases'** collection
       const q = window.firestore.query(
-        window.firestore.collection(window.db, "reports"),
+        window.firestore.collection(window.db, "**showcases**"),
         window.firestore.orderBy("createdAt", "desc")
       );
 
@@ -507,7 +508,7 @@
           <div class="report-card ${isMine ? 'mine' : ''}">
             <div class="report-header">
               <h3 class="report-title">${report.name}</h3>
-              ${isMine ? '<span class="report-mine"><i class="fas fa-user"></i> My Report</span>' : ''}
+              ${isMine ? '<span class="report-mine"><i class="fas fa-user"></i> My Showcase</span>' : ''}
             </div>
             
             <p class="report-desc">${report.desc}</p>
@@ -611,9 +612,9 @@
       document.body.appendChild(loadingOverlay);
 
       try {
-        // Delete from Firestore
+        // Delete from the **'showcases'** collection
         await window.firestore.deleteDoc(
-          window.firestore.doc(window.db, "reports", reportId)
+          window.firestore.doc(window.db, "**showcases**", reportId)
         );
 
         // Remove from local array
